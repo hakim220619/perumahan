@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JenisPembayaranController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranController;
@@ -103,6 +104,14 @@ Route::middleware(['auth'])->group(function () {
     //excel
     Route::get('/cetakExcel', [LaporanController::class, 'cetakExcel'])->name('laporan.cetakExcel');
     Route::get('/cetakExcelById', [LaporanController::class, 'cetakExcelById'])->name('laporan.cetakExcelById');
+
+    //Jenis Pembayaran
+    Route::get('/jenisPembayaran', [JenisPembayaranController::class, 'view'])->name('jenisPembayaran');
+    Route::get('/jenisPembayaranAdd', [JenisPembayaranController::class, 'add'])->name('jenisPembayaran.add');
+    Route::post('/jenisPembayaran/add', [JenisPembayaranController::class, 'addProses'])->name('jenisPembayaran.addproses');
+    Route::get('/jenisPembayaran/edit/{id}', [JenisPembayaranController::class, 'edit'])->name('jenisPembayaran.edit');
+    Route::post('/jenisPembayaran/editProses', [JenisPembayaranController::class, 'editProses'])->name('jenisPembayaran.editProses');
+    Route::get('/jenisPembayaran/delete/{id}', [JenisPembayaranController::class, 'delete'])->name('jenisPembayaran.delete');
 });
 
 Route::get('/route-cache', function () {

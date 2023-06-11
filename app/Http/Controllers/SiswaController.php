@@ -47,7 +47,7 @@ class SiswaController extends Controller
         $data['title'] = "Edit Penghuni";
         $data['siswa'] = DB::table('users')->where('id', $id)->first();
         $data['kelas'] = DB::select("select * from kelas");
-        $data['jurusan'] = DB::select("select * from jurusan");
+  
         return view('backend.siswa.edit', $data);
     }
     public function editProses(Request  $request)

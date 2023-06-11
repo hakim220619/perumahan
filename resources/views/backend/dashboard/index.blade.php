@@ -101,7 +101,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>Kelas</th>
+                                    <th>Blok</th>
                                     <th>Nomor RUmah</th>
                                     <th class="text-center">Rank Payment</th>
 

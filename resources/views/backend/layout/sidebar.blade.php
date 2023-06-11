@@ -59,6 +59,12 @@
                 </a>
             </li>
             <li class="menu-item">
+                <a href="/tunggakan" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-analyse"></i>
+                    <div>Tunggakan</div>
+                </a>
+            </li>
+            <li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class='menu-icon tf-icons bx bx-cog'></i>
                     {{-- <div>Setting</div> --}}

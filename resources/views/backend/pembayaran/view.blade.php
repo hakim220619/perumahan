@@ -258,7 +258,7 @@
                     success: function(res) {
                         if (res) {
                             $("#kk").empty();
-                            $("#kk").append('<option>---Pilih Siswa---</option>');
+                            $("#kk").append('<option>---Pilih Penghuni---</option>');
                             $.each(res, function(kode, value) {
                                 $("#kk").append('<option value="' + value.kk + '">' + value
                                     .nama_lengkap +

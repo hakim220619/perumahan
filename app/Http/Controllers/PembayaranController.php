@@ -54,7 +54,6 @@ class PembayaranController extends Controller
 
             // dd($status);
         }
-        // dd($request->all());
         $data['title'] = "Pembayaran";
         $data['getSiswa'] = DB::select("select * from users where role = '2'");
         $data['thajaran'] = DB::select("select * from tahun_ajaran where active = 'ON'");

@@ -21,7 +21,6 @@ class SiswaController extends Controller
     {
         $data['title'] = "Tambah Penghuni";
         $data['kelas'] = DB::select("select * from kelas");
-        $data['jurusan'] = DB::select("select * from jurusan");
         return view('backend.siswa.add', $data);
     }
     public function addSiswa(Request  $request)

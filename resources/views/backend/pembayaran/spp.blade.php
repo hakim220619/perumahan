@@ -31,6 +31,7 @@
                             @foreach ($spp as $a)
                                 <tr>
                                     <td>{{ $no++ }}</td>
+                                    {{-- <td width="auto" id="getidpayment" hidden>{{ $a->id }}</td> --}}
                                     <td width="auto">{{ $a->nama_lengkap }}</td>
                                     <td width="20%">{{ $a->nama_bulan }} {{ $a->tahun }}</td>
                                     <td width="auto">Rp. {{ number_format($a->nilai) }}</td>
@@ -40,7 +41,7 @@
                                             <a href="{{ $a->pdf_url }}" class="btn btn-success"
                                                 target="_blank">Invoice</a>
                                         @elseif ($a->status == 'Lunas')
-                                            <a href="#" class="btn btn-danger" target="_blank">Cetak</a>
+                                            <button onclick="printExcelById(this.value)" value="{{ $a->id }}" class="btn btn-success" target="_blank">Cetak</button>
                                         @endif
                                     </td>
                                     <td width="auto">{{ $a->created_at }}</td>
@@ -216,5 +217,25 @@
                 });
             }
         });
+        function printExcelById(value) {
+            // console.log(value);
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: "{{ url('cetakExcelByIdBulanan') }}/" ,
+                data: {
+                    payment_id: value,
+                },
+
+                success: function(response) {
+                    // console.log(response.file);
+                    window.open(response.file, '_blank');
+                },
+                error: function() {
+                    alert("error");
+                }
+            });
+            return false;
+        }
     </script>
 @endsection

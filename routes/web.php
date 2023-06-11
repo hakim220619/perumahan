@@ -14,6 +14,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SnapController;
 use App\Http\Controllers\TagihanController;
 use App\Http\Controllers\TahunController;
+use App\Http\Controllers\TunggakanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,11 +100,11 @@ Route::middleware(['auth'])->group(function () {
 
     //Laporan
     Route::get('/laporan', [LaporanController::class, 'view'])->name('laporan');
-
     Route::get('/laporan/load_data', [LaporanController::class, 'load_data'])->name('laporan.load_data');
     //excel
     Route::get('/cetakExcel', [LaporanController::class, 'cetakExcel'])->name('laporan.cetakExcel');
     Route::get('/cetakExcelById', [LaporanController::class, 'cetakExcelById'])->name('laporan.cetakExcelById');
+    Route::get('/cetakExcelByIdBulanan', [LaporanController::class, 'cetakExcelByIdBulanan'])->name('laporan.cetakExcelByIdBulanan');
 
     //Jenis Pembayaran
     Route::get('/jenisPembayaran', [JenisPembayaranController::class, 'view'])->name('jenisPembayaran');
@@ -112,6 +113,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/jenisPembayaran/edit/{id}', [JenisPembayaranController::class, 'edit'])->name('jenisPembayaran.edit');
     Route::post('/jenisPembayaran/editProses', [JenisPembayaranController::class, 'editProses'])->name('jenisPembayaran.editProses');
     Route::get('/jenisPembayaran/delete/{id}', [JenisPembayaranController::class, 'delete'])->name('jenisPembayaran.delete');
+
+    //Tunggakan
+    Route::get('/tunggakan', [TunggakanController::class, 'view'])->name('tunggakan');
 });
 
 Route::get('/route-cache', function () {

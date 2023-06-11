@@ -35,12 +35,12 @@
                     </li>
                     <li class="menu-item">
                         <a href="/siswa" class="menu-link">
-                            <div>Siswa</div>
+                            <div>Penghuni</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="/kelas" class="menu-link">
-                            <div>Kelas</div>
+                            <div>Blok</div>
                         </a>
                     </li>
 

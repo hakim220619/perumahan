@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kelas</th>
+                        <th>Blok</th>
                         <th>Keterangan</th>
                         <th>Actions</th>
                     </tr>

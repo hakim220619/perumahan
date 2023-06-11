@@ -11,13 +11,13 @@ class KelasController extends Controller
 {
     public function view()
     {
-        $data['title'] = "Kelas";
+        $data['title'] = "Blok";
         $data['kelas'] = DB::select("select * from kelas");
         return view('backend.kelas.view', $data);
     }
     public function add()
     {
-        $data['title'] = "Tambah kelas";
+        $data['title'] = "Tambah Blok";
         return view('backend.kelas.add', $data);
     }
     public function addkelas(Request $request)
@@ -33,7 +33,7 @@ class KelasController extends Controller
     }
     public function edit(Request $request)
     {
-        $data['title'] = "Edit Kelas";
+        $data['title'] = "Edit Blok";
         $data['kelas'] = DB::table('kelas')->where('id', $request->id)->first();
         return view('backend.kelas.edit', $data);
     }

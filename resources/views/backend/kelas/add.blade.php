@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="full_name">Nama Kelas</label>
+                                    <label class="form-label" for="full_name">Blok</label>
                                     <input type="text" class="form-control" id="nama_kelas" name="nama_kelas"
                                         placeholder="Masukan Nama Kelas" required />
                                 </div>

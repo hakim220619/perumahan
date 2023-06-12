@@ -105,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cetakExcel', [LaporanController::class, 'cetakExcel'])->name('laporan.cetakExcel');
     Route::get('/cetakExcelById', [LaporanController::class, 'cetakExcelById'])->name('laporan.cetakExcelById');
     Route::get('/cetakExcelByIdBulanan', [LaporanController::class, 'cetakExcelByIdBulanan'])->name('laporan.cetakExcelByIdBulanan');
+    Route::get('/cetakTunggakan', [LaporanController::class, 'cetakTunggakan'])->name('laporan.cetakTunggakan');
 
     //Jenis Pembayaran
     Route::get('/jenisPembayaran', [JenisPembayaranController::class, 'view'])->name('jenisPembayaran');
@@ -116,6 +117,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Tunggakan
     Route::get('/tunggakan', [TunggakanController::class, 'view'])->name('tunggakan');
+    Route::get('/tunggakan/search', [TunggakanController::class, 'search'])->name('tunggakan.search');
+    Route::get('/tunggakan/load_data', [TunggakanController::class, 'load_data'])->name('tunggakan.load_data');
 });
 
 Route::get('/route-cache', function () {

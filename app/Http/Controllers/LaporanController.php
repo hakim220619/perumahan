@@ -323,4 +323,99 @@ class LaporanController extends Controller
         // dd(response());
         // die(json_encode($response));
     }
+    public function cetakTunggakan(Request $request)
+    {
+        $data = DB::select("SELECT u.nama_lengkap, jp.pembayaran, t.nilai, ta.tahun,
+        (
+            case when t.jenis_pembayaran = 1 
+            then (t.nilai * 12) - (SELECT IF(p.nilai != null, SUM(p.nilai), 0) as total_dibayar FROM payment p LEFT JOIN tagihan t on t.id=p.tagihan_id 
+            WHERE p.status = 'Lunas' AND t.jenis_pembayaran = 1 AND p.user_id = '$request->user_id') 
+            ELSE t.nilai END
+        ) AS tunggakan 
+            FROM tagihan t LEFT JOIN payment p on p.tagihan_id=t.id LEFT JOIN tahun_ajaran ta on ta.id=t.thajaran_id 
+            LEFT JOIN jenis_pembayaran jp on jp.id=t.jenis_pembayaran LEFT JOIN users u on u.id=t.user_id 
+            WHERE t.user_id = '$request->user_id' 
+            GROUP BY u.nama_lengkap, jp.pembayaran, ta.tahun, t.nilai, t.jenis_pembayaran, tunggakan");
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->mergeCells('A1:E1');
+        $sheet->getStyle('A1')->getAlignment()->applyFromArray(
+            array('horizontal' => Alignment::HORIZONTAL_CENTER,)
+        );
+        $sheet->mergeCells('A2:E2');
+        $sheet->getStyle('A2')->getAlignment()->applyFromArray(
+            array('horizontal' => Alignment::HORIZONTAL_CENTER,)
+        );
+        foreach (range('A1', 'E1') as $columnID) {
+            $spreadsheet->getActiveSheet()->getColumnDimension($columnID)
+                ->setAutoSize(true);
+        }
+        $spreadsheet->getActiveSheet()->getStyle('A4:E4')->getFill()
+            ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+            ->getStartColor()->setARGB('d5d5d5');
+        $sheet->setCellValue(
+            'A1',
+            'LAPORAN KEUANGAN'
+        );
+        $sheet->setCellValue(
+            'A2',
+            ' Laporan PADA TANGGAL ' . now() . ''
+        );
+
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A4', 'No');
+        $sheet->setCellValue('B4', 'Nama Lengkap');
+        $sheet->setCellValue('C4', 'Tahun');
+        $sheet->setCellValue('D4', 'Pembayaran');
+        $sheet->setCellValue('E4', 'Tunggakan');
+        
+        $rows = 5;
+        $no = 1;
+        // dd($data);
+        foreach ($data as $pemDetails) {
+            $sheet->setCellValue('A' . $rows, $no++);
+            $sheet->setCellValue('B' . $rows, $pemDetails->nama_lengkap);
+            $sheet->setCellValue('C' . $rows, $pemDetails->tahun);
+            $sheet->setCellValue('D' . $rows, $pemDetails->pembayaran);
+            $sheet->setCellValue('E' . $rows,  $pemDetails->tunggakan);
+          
+            $rows++;
+        }
+        $Sheet = $spreadsheet->getActiveSheet();
+        $lABC1 = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        $lABC2 = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+
+        for ($I = 0; $I < count($lABC1); $I++) :
+            $Sheet->getColumnDimension($lABC1[$I])->setAutoSize(true);
+            for ($J = 0; $J < 6; $J++) {
+                $Sheet->getColumnDimension($lABC2[$J] . $lABC1[$I])->setAutoSize(true);
+            }
+        endfor;
+        $fileName = "Laporan Tunggakan " . $data[0]->nama_lengkap . "";
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="Laporan ' . $fileName . '.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+        // $writer->save('php://output');
+
+
+        ob_start();
+        $writer->save(public_path('storage/excel/' . $fileName . '.xlsx'));
+
+        // public_path('storage/excel/'.$fileName.'.xlsx') ;
+        // $xlsData = ob_get_contents();
+        ob_end_clean();
+
+        $response =  array(
+            'op' => 'ok',
+            'file' => '' . url('/storage/excel') . '/' . $fileName . '.xlsx'
+        );
+        // dd(response());
+        die(json_encode($response));
+
+        // dd(response());
+        // die(json_encode($response));
+    }
 }

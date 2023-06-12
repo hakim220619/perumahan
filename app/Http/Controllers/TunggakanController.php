@@ -11,6 +11,7 @@ class TunggakanController extends Controller
     {
         $data['title'] = "Tunggakan";
         $data['thajaran'] = DB::select("select * from tahun_ajaran");
+        $data['penghuni'] = DB::select("select * from users where role = '2'");
         return view('backend.tunggakan.view', $data);
     }
 }

@@ -32,8 +32,11 @@
                             <td width="auto">{{ $a->created_at }}</td>
                             <td>
                                 <a href="/jenisPembayaran/edit/{{ $a->id }}" type="button" class="btn btn-success">Edit</a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                @if ($a->id != 1)
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#delete{{ $a->id }}">Delete</button>
+                                @endif
+                                
                             </td>
                             <div class="modal fade" id="delete{{ $a->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="deletemodal" aria-hidden="true">

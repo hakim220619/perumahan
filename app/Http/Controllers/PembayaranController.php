@@ -33,9 +33,12 @@ class PembayaranController extends Controller
         \Midtrans\Config::$is3ds = true;
 
         $getOrderId = DB::select("select p.*, u.kk, u.nama_lengkap from users u left join payment p on p.user_id=u.id where u.kk = '$request->kk' ORDER BY p.created_at DESC");
+        // dd($getOrderId);
         foreach ($getOrderId as $ord) {
+            
             if ($ord->order_id != null) {
                 $getDataMidtrans = \Midtrans\Transaction::status($ord->order_id);
+                dd($getDataMidtrans->status_code);
                 if ($getDataMidtrans->status_code == 200) {
                     $data = [
                         'status' => "Lunas"
@@ -92,6 +95,7 @@ class PembayaranController extends Controller
         foreach ($getOrderId as $ord) {
             if ($ord->order_id != null) {
                 $getDataMidtrans = \Midtrans\Transaction::status($ord->order_id);
+              
                 if ($getDataMidtrans->status_code == 200) {
                     $data = [
                         'status' => "Lunas"

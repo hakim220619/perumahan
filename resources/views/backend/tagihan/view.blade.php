@@ -39,10 +39,13 @@
                             <td width="auto">{{ $a->status }}</td>
                             <td width="auto">{{ $a->created_at }}</td>
                             <td>
+                                @if ($a->status != 'Lunas')
+                                    <a href="/tagihan/edit/{{ $a->id }}" type="button"
+                                        class="btn btn-success">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#delete{{ $a->id }}">Delete</button>
+                                @endif
 
-                                <a href="/siswa/edit/{{ $a->id }}" type="button" class="btn btn-success">Edit</a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#delete{{ $a->id }}">Delete</button>
                             </td>
                             <div class="modal fade" id="delete{{ $a->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="deletemodal" aria-hidden="true">
@@ -50,7 +53,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="addNewDonaturLabel">Hapus Siswa
+                                                <h5 class="modal-title" id="addNewDonaturLabel">Hapus Tagihan
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>

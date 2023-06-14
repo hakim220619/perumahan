@@ -18,7 +18,7 @@ class AplikasiController extends Controller
     }
     public function edit($id)
     {
-        $data['title'] = "Edit Siswa";
+        $data['title'] = "Edit Aplikasi";
         $data['aplikasi'] = DB::table('aplikasi')->where('id', $id)->first();
 
         return view('backend.aplikasi.edit', $data);

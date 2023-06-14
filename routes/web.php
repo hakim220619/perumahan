@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
     //tagihan
     Route::get('/tagihan', [TagihanController::class, 'view'])->name('tagihan');
     Route::get('/tagihanAdd', [TagihanController::class, 'add'])->name('tagihan.add');
+    Route::get('/tagihan/edit/{id}', [TagihanController::class, 'edit'])->name('tagihan.edit');
+    Route::post('/tagihan/editProses', [TagihanController::class, 'editProses'])->name('tagihan.editProses');
     Route::post('/tagihan/add', [TagihanController::class, 'addProses'])->name('tagihan.addproses');
     Route::get('/tagihan/delete/{id}', [TagihanController::class, 'delete'])->name('tagihan.delete');
 

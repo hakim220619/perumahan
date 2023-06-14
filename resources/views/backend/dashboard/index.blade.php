@@ -32,7 +32,7 @@
                             </h6>
                             <small class="d-block mb-3 text-nowrap">Total Pembayaran</small>
                             <h5 class="card-title text-primary mb-1">Rp. {{number_format($totalById)}}</h5>
-                            <small class="d-block mb-4 pb-1 text-muted">78% of target</small>
+                            {{-- <small class="d-block mb-4 pb-1 text-muted">78% of target</small> --}}
                             <a href="javascript:;" class="btn btn-sm btn-primary">View profile</a>
                         </div>
                     </div>
@@ -49,30 +49,30 @@
                 <div class="card-body row g-4">
                     <div class="col-md-6 pe-md-4 card-separator">
                         <div class="card-title d-flex align-items-start justify-content-between">
-                            <h5 class="mb-0">New Visitors</h5>
-                            <small>Last Week</small>
+                            <h5 class="mb-0">Total Pembayaran Bulanan</h5>
+                            {{-- <small>Last Week</small> --}}
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="mt-auto">
-                                <h2 class="mb-2">23%</h2>
-                                <small class="text-danger text-nowrap fw-semibold"><i class='bx bx-down-arrow-alt'></i>
-                                    -13.24%</small>
+                                <h2 class="mb-2">Rp. {{number_format($totalBulanan)}}</h2>
+                                {{-- <small class="text-danger text-nowrap fw-semibold"><i class='bx bx-down-arrow-alt'></i>
+                                    -13.24%</small> --}}
                             </div>
-                            <div id="visitorsChart"></div>
+                            {{-- <div id="visitorsChart"></div> --}}
                         </div>
                     </div>
                     <div class="col-md-6 ps-md-4">
                         <div class="card-title d-flex align-items-start justify-content-between">
-                            <h5 class="mb-0">Activity</h5>
-                            <small>Last Week</small>
+                            <h5 class="mb-0">Total Pembayaran Lainya</h5>
+                            {{-- <small>Last Week</small> --}}
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="mt-auto">
-                                <h2 class="mb-2">82%</h2>
-                                <small class="text-success text-nowrap fw-semibold"><i class='bx bx-up-arrow-alt'></i>
-                                    24.8%</small>
+                                <h2 class="mb-2">Rp. {{number_format($totalLainya)}}</h2>
+                                {{-- <small class="text-success text-nowrap fw-semibold"><i class='bx bx-up-arrow-alt'></i>
+                                    24.8%</small> --}}
                             </div>
-                            <div id="activityChart"></div>
+                            {{-- <div id="activityChart"></div> --}}
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
         <!--/ Conversion rate -->
 
         <div class="row">
-            <div class="col-md-6 col-lg-8 mb-4 mb-md-0">
+            <div class="col-md-12 col-lg-12 mb-4 mb-md-0">
                 <div class="card">
                     <div class="table-responsive text-nowrap">
                         <table class="table text-nowrap">
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <!-- Total Balance -->
-            <div class="col-md- col-lg-4">
+            {{-- <div class="col-md- col-lg-4">
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5 class="card-title m-0 me-2">Total Balance</h5>
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

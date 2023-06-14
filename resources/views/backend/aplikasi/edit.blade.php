@@ -12,7 +12,7 @@
                         @csrf
                         <input type="text" name="id" value="{{ $aplikasi->id }}" hidden>
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="pemilik">Pemilik</label>
                                     <input type="text" class="form-control" id="nama_owner" name="nama_owner"
@@ -20,36 +20,29 @@
                                 </div>
                             </div>
                             
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="tlp">Telephone</label>
                                     <input type="text" class="form-control" id="tlp" name="tlp"
                                         value="{{ $aplikasi->tlp }}" placeholder="Masukan Telephone" required />
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="title">Title</label>
                                     <input type="text" class="form-control" id="title" name="title"
                                         value="{{ $aplikasi->title }}" placeholder="Masukan Title" required />
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="mb-3">
-                                    <label class="form-label" for="nama_aplikasi">Nama Aplikasi</label>
-                                    <input type="text" class="form-control" id="nama_aplikasi" name="nama_aplikasi"
-                                        value="{{ $aplikasi->nama_aplikasi }}" placeholder="Masukan Nama Aplikasi"
-                                        required />
-                                </div>
-                            </div>
-                            <div class="col-md-3">
+                            
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="logo">Logo</label>
                                     <input type="file" class="form-control" id="image" name="image"
                                         value="{{ $aplikasi->logo }}" placeholder="Masukan Logo" />
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="copy_right">Copy Right</label>
                                     <input type="text" class="form-control" id="copy_right" name="copy_right"
@@ -57,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="versi">Versi</label>
                                     <input type="text" class="form-control" id="versi" name="versi"
@@ -65,11 +58,12 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-12">
                                 <div class="mb-3">
-                                    <label class="form-label" for="tahun">Tahun</label>
-                                    <input type="text" class="form-control" id="tahun" name="tahun"
-                                        value="{{ $aplikasi->tahun }}" placeholder="Masukan tahun" required />
+                                    <label class="form-label" for="nama_aplikasi">Nama Aplikasi</label>
+                                    <input type="text" class="form-control" id="nama_aplikasi" name="nama_aplikasi"
+                                        value="{{ $aplikasi->nama_aplikasi }}" placeholder="Masukan Nama Aplikasi"
+                                        required />
                                 </div>
                             </div>
                             <div class="col-md-12">

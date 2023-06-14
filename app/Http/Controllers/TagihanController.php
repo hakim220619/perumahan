@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TagihanController extends Controller
 {
@@ -22,6 +23,13 @@ class TagihanController extends Controller
         $data['thajaran'] = DB::select("select * from tahun_ajaran where active = 'ON'");
         $data['jnpembayaran'] = DB::select("select * from jenis_pembayaran where status = 'ON'");
         return view('backend.tagihan.add', $data);
+    }
+    public function edit(Request $request)
+    {
+        $data['title'] = "Edit Tagihan";
+        // $data['active'] = ['ON', 'OFF'];
+        $data['tagihan'] = DB::table('tagihan')->where('id', $request->id)->first();
+        return view('backend.tagihan.edit', $data);
     }
     public function addProses(Request $request)
     {
@@ -42,6 +50,19 @@ class TagihanController extends Controller
         }
         DB::table('tagihan')->insert($data);
         return redirect("tagihan");
+    }
+    public function editProses(Request  $request)
+    {
+
+        $data = [
+            'nilai' => $request->nilai,
+            'updated_at' => now()
+        ];
+
+        // dd($data);
+        DB::table('tagihan')->where('id', $request->id)->update($data);
+        Alert::success('Success', 'Tagihan Berhasil diubah');
+        return redirect('tagihan');
     }
     public function jenisPembayaran()
     {
@@ -81,5 +102,4 @@ ORDER BY a.nama_lengkap");
             ]);
         }
     }
-    
 }

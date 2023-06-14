@@ -15,9 +15,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Basic - Pages |
-        Sneat -
-        Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Login {{ Helper::apk()->title }} </title>
     <meta name="description"
         content="Most Powerful &amp; Comprehensive Bootstrap 5 HTML Admin Dashboard Template built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
@@ -27,7 +25,7 @@
     <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-html-laravel-admin-template/">
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
-        href="https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template/demo/assets/img/favicon/favicon.ico" />
+    href="{{ asset('') }}storage/images/logo/{{ Helper::apk()->logo }}" />
 
     <!-- Include Styles -->
     <!-- BEGIN: Theme CSS-->

@@ -73,7 +73,7 @@ class PembayaranController extends Controller
             
             return view('backend.pembayaran.view', $data);
         } else {
-            Alert::warning('Peringatan', 'SISWA BELUM ADA TAGIHAN');
+            Alert::warning('Peringatan', 'BELUM ADA TAGIHAN');
             return view('backend.pembayaran.view', $data);
         }
     }

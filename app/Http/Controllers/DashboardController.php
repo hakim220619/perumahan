@@ -13,8 +13,10 @@ class DashboardController extends Controller
         $data['totalById'] = DB::table('payment')->where('user_id', request()->user()->id)->sum('nilai');
         $data['totalBulanan'] = DB::table('payment')->where('user_id', request()->user()->id)->where('bulan_id', '!=', null)->where('status', 'Lunas')->sum('nilai');
         $data['totalLainya'] = DB::table('payment')->where('user_id', request()->user()->id)->where('bulan_id', '=', null)->where('status', 'Lunas')->sum('nilai');
+        $data['pengurus'] = DB::table('users')->where('role', '!=', 2)->where('status', 'ON')->count('id');
+        $data['penghuni'] = DB::table('users')->where('role', 2)->where('status', 'ON')->count('id');
 
-        // dd($data['totalBulanan']);
+        // dd($data['pengurus']);
         return view('backend.dashboard.index', $data);
     }
 }

@@ -30,6 +30,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
             'nomor_rumah' => $request->nomor_rumah,
             'role' => $request->role,
+            'status' => "ON",
             'created_at' => now()
         ];
         // dd($data);
@@ -40,6 +41,7 @@ class AdminController extends Controller
     {
         $data['title'] = "Edit Admin";
         $data['role'] = ['1', '3'];
+        $data['status'] = ['ON', 'OFF'];
         $data['admin'] = DB::table('users')->where('id', $request->id)->first();
         return view('backend.admin.edit', $data);
     }
@@ -54,6 +56,7 @@ class AdminController extends Controller
                 'password' => Hash::make($request->password),
                 'nomor_rumah' => $request->nomor_rumah,
                 'role' => $request->role,
+                'status' => $request->status,
                 'updated_at' => now()
             ];
         } else {
@@ -65,6 +68,7 @@ class AdminController extends Controller
                 'password' => Hash::make($request->password),
                 'nomor_rumah' => $request->nomor_rumah,
                 'role' => $request->role,
+                'status' => $request->status,
                 'updated_at' => now()
             ];
         }

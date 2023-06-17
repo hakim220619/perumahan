@@ -35,6 +35,7 @@ class SiswaController extends Controller
             'password' => Hash::make($request->password),
             'nomor_rumah' => $request->nomor_rumah,
             'role' => 2,
+            'status' => "ON",
             'created_at' => now()
         ];
         // dd($data);
@@ -44,6 +45,7 @@ class SiswaController extends Controller
     public function edit($id)
     {
         $data['title'] = "Edit Penghuni";
+        $data['status'] = ['ON', 'OFF'];
         $data['siswa'] = DB::table('users')->where('id', $id)->first();
         $data['kelas'] = DB::select("select * from kelas");
   
@@ -62,6 +64,7 @@ class SiswaController extends Controller
                 'password' => Hash::make($request->password),
                 'nomor_rumah' => $request->nomor_rumah,
                 'role' => 2,
+                'status' => $request->status,
                 'updated_at' => now()
             ];
         } else {
@@ -74,6 +77,7 @@ class SiswaController extends Controller
                 'tgl_lahir' => $request->tgl_lahir,
                 'nomor_rumah' => $request->nomor_rumah,
                 'role' => 2,
+                'status' => $request->status,
                 'updated_at' => now()
             ];
         }

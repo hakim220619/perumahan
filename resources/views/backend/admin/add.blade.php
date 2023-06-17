@@ -68,7 +68,7 @@
                             <div class="col-md-12">
                                 <br>
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="/siswa" type="button" class="btn btn-success">Kembali</a>
+                                <a href="/admin" type="button" class="btn btn-success">Kembali</a>
                             </div>
                     </form>
                 </div>

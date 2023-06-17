@@ -128,8 +128,16 @@
                         <div>Laporan</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="/tunggakan" class="menu-link ">
+                        <i class="menu-icon tf-icons bx bx-analyse"></i>
+                        <div>Tunggakan</div>
+                    </a>
+                </li>
             </ul>
+           
         </li>
+       
     @endif
 
 </aside>

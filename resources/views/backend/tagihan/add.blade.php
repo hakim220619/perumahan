@@ -15,7 +15,7 @@
 
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="thajaran_id">Tahun Ajaran</label>
+                                    <label class="form-label" for="thajaran_id">Tahun</label>
                                     <select class="form-control" name="thajaran_id" id="thajaran_id" required>
                                         <option value="" selected>-- Pilih --</option>
                                         @foreach ($thajaran as $s)
@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kelas_id">Kelas</label>
+                                    <label class="form-label" for="kelas_id">Blok</label>
                                     <select class="form-control" name="kelas_id" id="kelas_id" required>
                                         <option value="" selected>-- Pilih --</option>
                                         @foreach ($kelas as $s)

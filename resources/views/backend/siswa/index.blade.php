@@ -19,6 +19,7 @@
                         <th>Email</th>
                         <th>Blok</th>
                         <th>Nomor Rumah</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,6 +35,27 @@
                             <td width="auto">{{ $a->email }}</td>
                             <td width="auto">{{ $a->nama_kelas }}</td>
                             <td width="auto">{{ $a->nomor_rumah }}</td>
+                            <td width="auto">
+                                <label class="switch switch-primary">
+                                    @if ($a->status == 'ON')
+                                        <input type="checkbox" readonly
+                                            class="switch-input" checked />
+                                    @else
+                                        <input type="checkbox" readonly
+                                            class="switch-input" />
+                                    @endif
+
+                                    <span class="switch-toggle-slider">
+                                        <span class="switch-on">
+                                            <i class="bx bx-check"></i>
+                                        </span>
+                                        <span class="switch-off">
+                                            <i class="bx bx-x"></i>
+                                        </span>
+                                    </span>
+
+                                </label>
+                            </td>
                             <td>
 
                                 <a href="/siswa/edit/{{ $a->id }}" type="button" class="btn btn-success">Edit</a>

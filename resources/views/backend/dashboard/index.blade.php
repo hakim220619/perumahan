@@ -31,7 +31,7 @@
                                 {{ request()->user()->nama_lengkap }}
                             </h6>
                             <small class="d-block mb-3 text-nowrap">Total Pembayaran</small>
-                            <h5 class="card-title text-primary mb-1">Rp. {{number_format($totalById)}}</h5>
+                            <h5 class="card-title text-primary mb-1">Rp. {{ number_format($totalById) }}</h5>
                             {{-- <small class="d-block mb-4 pb-1 text-muted">78% of target</small> --}}
                             <a href="javascript:;" class="btn btn-sm btn-primary">View profile</a>
                         </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="mt-auto">
-                                <h2 class="mb-2">Rp. {{number_format($totalBulanan)}}</h2>
+                                <h2 class="mb-2">Rp. {{ number_format($totalBulanan) }}</h2>
                                 {{-- <small class="text-danger text-nowrap fw-semibold"><i class='bx bx-down-arrow-alt'></i>
                                     -13.24%</small> --}}
                             </div>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <div class="mt-auto">
-                                <h2 class="mb-2">Rp. {{number_format($totalLainya)}}</h2>
+                                <h2 class="mb-2">Rp. {{ number_format($totalLainya) }}</h2>
                                 {{-- <small class="text-success text-nowrap fw-semibold"><i class='bx bx-up-arrow-alt'></i>
                                     24.8%</small> --}}
                             </div>
@@ -86,7 +86,49 @@
 
         <!--/ Total Income -->
     </div>
+    @if (request()->user()->role != 2)
+    
+            <div class="row g-4">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-normal">Total <b>{{ $pengurus }}</b> </h6>
 
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <div class="role-heading">
+                                    <h4 class="mb-1">Pengurus</h4>
+                                    <a href="/admin" class="role-edit-modal"><small>Edit Role</small></a>
+                                </div>
+                                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+         
+       
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h6 class="fw-normal">Total <b>{{ $penghuni }}</b> </h6>
+
+                            </div>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <div class="role-heading">
+                                    <h4 class="mb-1">Penghuni</h4>
+                                    <a href="/siswa" class="role-edit-modal"><small>Edit Role</small></a>
+                                </div>
+                                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    @endif
+    <br>
     <div class="report-list-item rounded-2">
 
 
@@ -122,7 +164,8 @@
                                         <td>
                                             {{ $rp->nomor_rumah }}
                                         </td>
-                                        <td class="text-center"><span class="badge bg-label-primary ">{{ $rank++ }}</span></td>
+                                        <td class="text-center"><span
+                                                class="badge bg-label-primary ">{{ $rank++ }}</span></td>
 
                                     </tr>
                                 @endforeach

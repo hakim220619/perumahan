@@ -15,8 +15,8 @@
                             <h6 class="mb-0" style="font-size: 30px; color: white;"> INFO PENTING!!!!</h6>
                         </div>
                         <div class="card-body">
-                            <h3 class="card-text" style="font-family: initial; color: white;">Nama siswa yang terdaftar dan
-                                belum mempunyai tagihan akan keluar di daftar nama siswa yang belum bayar.</h3>
+                            <h3 class="card-text" style="font-family: initial; color: white;">Nama Penghuni yang terdaftar dan
+                                belum mempunyai tagihan akan keluar di daftar nama Penghuni yang belum bayar.</h3>
                         </div>
                     </div>
                     <form action="/tagihan/add" method="POST" enctype="multipart/form-data">
@@ -28,7 +28,7 @@
                             <input type="text" value="{{ $kelas_id }}" name="kelas_id" id="" hidden>
                             <div class="col-md-6">
                                 <div class="mb-3 nis">
-                                    <label class="form-label" for="">Nis / Siswa</label>
+                                    <label class="form-label" for="">Penghuni</label>
                                     <select class="form-control selectpicker" name="user_id[]" id="user_id"
                                         data-actions-box="true" data-virtual-scroll="false" data-live-search="true" multiple
                                         required>

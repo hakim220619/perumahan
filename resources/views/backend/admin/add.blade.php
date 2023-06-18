@@ -53,7 +53,7 @@
                                         <option value="">-- Pilih --</option>
 
                                         <option value="1">Admin</option>
-                                        <option value="3">Kepala Sekolah</option>
+                                        <option value="3">Pengurus</option>
 
                                     </select>
                                 </div>

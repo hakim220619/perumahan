@@ -86,47 +86,45 @@
 
         <!--/ Total Income -->
     </div>
-    @if (request()->user()->role != 2)
-    
-            <div class="row g-4">
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h6 class="fw-normal">Total <b>{{ $pengurus }}</b> </h6>
+    @if (request()->user()->role == 1)
+        <div class="row g-4">
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h6 class="fw-normal">Total <b>{{ $pengurus }}</b> </h6>
 
-                            </div>
-                            <div class="d-flex justify-content-between align-items-end">
-                                <div class="role-heading">
-                                    <h4 class="mb-1">Pengurus</h4>
-                                    <a href="/admin" class="role-edit-modal"><small>Edit Role</small></a>
-                                </div>
-                                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
-                            </div>
                         </div>
-                    </div>
-                </div>
-         
-       
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h6 class="fw-normal">Total <b>{{ $penghuni }}</b> </h6>
-
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="role-heading">
+                                <h4 class="mb-1">Pengurus</h4>
+                                <a href="/admin" class="role-edit-modal"><small>Edit Role</small></a>
                             </div>
-                            <div class="d-flex justify-content-between align-items-end">
-                                <div class="role-heading">
-                                    <h4 class="mb-1">Penghuni</h4>
-                                    <a href="/siswa" class="role-edit-modal"><small>Edit Role</small></a>
-                                </div>
-                                <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
-                            </div>
+                            <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-    
+
+
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h6 class="fw-normal">Total <b>{{ $penghuni }}</b> </h6>
+
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="role-heading">
+                                <h4 class="mb-1">Penghuni</h4>
+                                <a href="/siswa" class="role-edit-modal"><small>Edit Role</small></a>
+                            </div>
+                            <a href="javascript:void(0);" class="text-muted"><i class="bx bx-copy"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
     <br>
     <div class="report-list-item rounded-2">

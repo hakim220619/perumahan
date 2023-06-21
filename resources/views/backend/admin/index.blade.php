@@ -37,7 +37,7 @@
                                 @if ($a->role == 1)
                                     Admin
                                 @else
-                                    Kepala Sekolah
+                                    Pengurus
                                 @endif
                             </td>
                             <td width="auto">

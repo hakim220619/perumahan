@@ -43,13 +43,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/adminAdd', [AdminController::class, 'add'])->name('admin.add');
     Route::post('/admin/add', [AdminController::class, 'addProses'])->name('admin.addproses');
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
+
     Route::post('/admin/editProses', [AdminController::class, 'editProses'])->name('admin.editProses');
     Route::get('/admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+    Route::post('/admin/changeStatus/{id}', [AdminController::class, 'changeStatus'])->name('admin.changeStatus');
     //siswa
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
     Route::get('/siswaAdd', [SiswaController::class, 'add'])->name('siswa.add');
     Route::post('/siswa/add', [SiswaController::class, 'addSiswa'])->name('siswa.addproses');
     Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.edit');
+
     Route::post('/siswa/editProses', [SiswaController::class, 'editProses'])->name('siswa.editProses');
     Route::get('/siswa/delete/{id}', [SiswaController::class, 'delete'])->name('siswa.delete');
     //Tahun AJaran

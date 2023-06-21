@@ -50,7 +50,7 @@
                             <a href="#informasisiswa" class="d-block bg-success border border-success card-header py-3"
                                 data-toggle="collapse" role="button" aria-expanded="true"
                                 aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-white">Informasi Siswa</h6>
+                                <h6 class="m-0 font-weight-bold text-white">Informasi Penghuni</h6>
                             </a>
                             <!-- Card Content - Collapse -->
                             <div class="collapse show" id="informasisiswa">
@@ -67,7 +67,7 @@
                                                 <td>: <span id="nm-siswa"><?php echo $siswa->nama_lengkap; ?></span></td>
                                             </tr>
                                             <tr>
-                                                <td>Kelas</td>
+                                                <td>Blok</td>
                                                 <td>: <?php echo $siswa->nama_kelas; ?></td>
                                             </tr>
                                             <tr>

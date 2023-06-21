@@ -114,7 +114,7 @@ class PembayaranController extends Controller
 
             // dd($status);
         }
-        $data['title'] = "Riwayat Pembayaran Spp";
+        $data['title'] = "Riwayat Pembayaran Iuran";
         // $data['id_tagihan'] = $id_tagihan;
 
         $getDataUser[0] = DB::select("select user_id, thajaran_id, t.kelas_id, u.kk from tagihan t left join users u on t.user_id=u.id where t.id = '$id_tagihan'");

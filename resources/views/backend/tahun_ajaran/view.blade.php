@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tahun Ajaran</th>
+                        <th>Tahun</th>
                         <th>Status</th>
                         <th>Dibuat</th>
                         <th>Actions</th>

@@ -72,7 +72,7 @@
                                                 @if ($r == 1)
                                                     Admin
                                                 @else
-                                                    Kepala Sekolah
+                                                    Pengurus
                                                 @endif
                                             </option>
                                         @endforeach

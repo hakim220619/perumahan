@@ -38,7 +38,7 @@ class PembayaranController extends Controller
             
             if ($ord->order_id != null) {
                 $getDataMidtrans = \Midtrans\Transaction::status($ord->order_id);
-                dd($getDataMidtrans->status_code);
+                // dd($getDataMidtrans->status_code);
                 if ($getDataMidtrans->status_code == 200) {
                     $data = [
                         'status' => "Lunas"

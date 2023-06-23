@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label class="form-label" for="thajaran_id">Tahun Ajaran</label>
+                                <label class="form-label" for="thajaran_id">Tahun</label>
                                 <select class="form-control" name="thajaran_id" id="thajaran_id" onchange="tampil_data()"
                                     required>
                                     <option value="" selected>-- Pilih --</option>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="mb-3">
-                                <label class="form-label" for="kelas_id">Kelas</label>
+                                <label class="form-label" for="kelas_id">Blok</label>
                                 <select class="form-control" name="kelas_id" id="kelas_id" onchange="tampil_data()"
                                     required>
                                     <option value="" selected>-- Pilih --</option>

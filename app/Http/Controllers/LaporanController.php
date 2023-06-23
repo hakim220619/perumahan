@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
-use PhpOffice\PhpSpreadsheet\IOFactory;
 
 
 class LaporanController extends Controller
@@ -369,7 +369,7 @@ class LaporanController extends Controller
         $sheet->setCellValue('C4', 'Tahun');
         $sheet->setCellValue('D4', 'Pembayaran');
         $sheet->setCellValue('E4', 'Tunggakan');
-        
+
         $rows = 5;
         $no = 1;
         // dd($data);
@@ -379,7 +379,7 @@ class LaporanController extends Controller
             $sheet->setCellValue('C' . $rows, $pemDetails->tahun);
             $sheet->setCellValue('D' . $rows, $pemDetails->pembayaran);
             $sheet->setCellValue('E' . $rows,  $pemDetails->tunggakan);
-          
+
             $rows++;
         }
         $Sheet = $spreadsheet->getActiveSheet();
@@ -417,5 +417,35 @@ class LaporanController extends Controller
 
         // dd(response());
         // die(json_encode($response));
+    }
+    function bulananPdf($id_tagihan)
+    {
+        $data['date'] = now();
+        $data['users'] = DB::select("select s.*, u.nama_lengkap from payment s 
+        left join users u on u.id=s.user_id where s.tagihan_id = '$id_tagihan' limit 1");
+        $data['bulanan'] = DB::select("select s.*, u.nama_lengkap, ta.tahun, jp.pembayaran, b.nama_bulan 
+        from payment s left join users u on u.id=s.user_id left join bulan b on b.id=s.bulan_id 
+        left join tagihan t on t.id=s.tagihan_id left join tahun_ajaran ta on ta.id=t.thajaran_id 
+        left join jenis_pembayaran jp on jp.id=t.jenis_pembayaran where t.id = '$id_tagihan' order by bulan_id asc");
+        $pdf = PDF::loadView('backend.laporan.pdfViewBulanan', $data);
+        // $pdf = PDF::loadView('backend.laporan.pdfViewBulanan', compact('invoiceItems', 'invoiceData'));
+        return $pdf->download('Bulanan_' . $id_tagihan . '_' . now() . '.pdf');
+    }
+    function lainyaPdf($id_tagihan)
+    {
+        $users = DB::select("select t.*, u.nama_lengkap from tagihan t 
+        left join users u on u.id=t.user_id where t.id = '$id_tagihan'");
+        
+        $data['nama_lengkap'] = $users[0]->nama_lengkap;
+        // dd($data['users']);
+        $data['date'] = now();
+        $data['lainya'] = DB::select("select t.*, u.nama_lengkap, ta.tahun, jp.pembayaran, u.kk, p.order_id, p.pdf_url, p.metode_pembayaran, 
+        p.status as status_payment from tagihan t left join users u on t.user_id=u.id left join tahun_ajaran ta on ta.id=t.thajaran_id 
+        left join jenis_pembayaran jp on jp.id=t.jenis_pembayaran left join payment p on p.tagihan_id=t.id 
+        where t.id = '$id_tagihan' and t.jenis_pembayaran != '1'");
+        // dd($data['lainya']);
+        $pdf = PDF::loadView('backend.laporan.pdfViewLainya', $data);
+        // $pdf = PDF::loadView('backend.laporan.pdfViewBulanan', compact('invoiceItems', 'invoiceData'));
+        return $pdf->download('Lainya_' . $id_tagihan . '_' . now() . '.pdf');
     }
 }

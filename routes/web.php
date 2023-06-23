@@ -105,6 +105,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Laporan
     Route::get('/laporan', [LaporanController::class, 'view'])->name('laporan');
+    Route::get('/bulananPdf/{id}', [LaporanController::class, 'bulananPdf'])->name('laporan.bulananPdf');
+    Route::get('/lainyaPdf/{id}', [LaporanController::class, 'lainyaPdf'])->name('laporan.lainyaPdf');
     Route::get('/laporan/load_data', [LaporanController::class, 'load_data'])->name('laporan.load_data');
     //excel
     Route::get('/cetakExcel', [LaporanController::class, 'cetakExcel'])->name('laporan.cetakExcel');

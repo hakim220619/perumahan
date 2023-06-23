@@ -14,7 +14,7 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <div class="mb-3">
-                                        <label class="form-label" for="kelas_id">Kelas</label>
+                                        <label class="form-label" for="kelas_id">Blok</label>
                                         <select class="form-select" name="blok" id="blok" required>
                                             <option value="" selected>-- Pilih --</option>
                                             @foreach ($kelas as $s)
@@ -123,38 +123,44 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                            $id = 1;
+                                                @php
+                                                    $id = 1;
+                                                @endphp
 
-                            foreach ($pembayaran_bulanan as $u) {
-                            ?>
-                                                <tr>
-                                                    <td><?php echo $id++; ?></td>
-                                                    <td><?php echo $u->tahun; ?></td>
-                                                    <td><?php echo $u->pembayaran; ?></td>
-                                                    <td>Rp. {{ number_format($u->total_bayar) }}</td>
-                                                    <td class="text-center">
-                                                        @if ($u->status_bayar == 'Belum Lunas')
-                                                            <span class="badge bg-label-danger" style="width: 57%;">Belum
-                                                                Lunas</span>
-                                                        @else
-                                                            <span class="badge bg-label-primary"
-                                                                style="width: 57%;">Lunas</span>
-                                                        @endif
-                                                    </td>
-                                                    <td hidden id="getidtagihan">{{ $u->id }}</td>
 
-                                                    <td>
-                                                        @if ($u->status_bayar == 'Belum Lunas')
-                                                            <a href="/pembayaran/spp/{{ $u->id }}"
-                                                                class="btn btn-primary">Bayar</a>
-                                                        @else
-                                                            <button onclick="printExcelById()"
-                                                                class="btn btn-success">Excel</button>
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <?php } ?>
+                                                @foreach ($pembayaran_bulanan as $u)
+                                                    <tr>
+                                                        <td><?php echo $id++; ?></td>
+                                                        <td><?php echo $u->tahun; ?></td>
+                                                        <td><?php echo $u->pembayaran; ?></td>
+                                                        <td>Rp. {{ number_format($u->total_bayar) }}</td>
+                                                        <td class="text-center">
+                                                            @if ($u->status_bayar == 'Belum Lunas')
+                                                                <span class="badge bg-label-danger"
+                                                                    style="width: 57%;">Belum
+                                                                    Lunas</span>
+                                                            @else
+                                                                <span class="badge bg-label-primary"
+                                                                    style="width: 57%;">Lunas</span>
+                                                            @endif
+                                                        </td>
+                                                        <td hidden id="getidtagihan">{{ $u->id }}</td>
+
+                                                        <td>
+                                                            @if ($u->status_bayar == 'Belum Lunas')
+                                                                <a href="/pembayaran/spp/{{ $u->id }}"
+                                                                    class="btn btn-primary">Bayar</a>
+                                                                    <a href="/bulananPdf/{{$u->id}}" 
+                                                                        class="btn btn-danger">PDF</a>
+                                                            @else
+                                                                <button onclick="printExcelById()"
+                                                                    class="btn btn-success">Excel</button>
+                                                                <a href="/bulananPdf/{{$u->id}}" target="_blank"
+                                                                    class="btn btn-danger">PDF</a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -195,11 +201,11 @@
                             foreach ($pembayaran_lainya as $u) {
                             ?>
                                                 <tr>
-                                                    <td hidden id="getIdLainya">{{$u->id}}</td>
+                                                    <td hidden id="getIdLainya">{{ $u->id }}</td>
                                                     <td><?php echo $id++; ?></td>
                                                     <td><?php echo $u->tahun; ?></td>
                                                     <td><?php echo $u->pembayaran; ?></td>
-                                                    
+
                                                     <td>
                                                         @if ($u->status_payment == null)
                                                             Rp. 0
@@ -225,12 +231,18 @@
                                                         @if ($u->status_payment == 'Pending')
                                                             <a href="{{ $u->pdf_url }}" class="btn btn-success"
                                                                 target="_blank">Invoice</a>
+                                                                <a href="/lainyaPdf/{{$u->id}}" 
+                                                                    class="btn btn-danger">PDF</a>
                                                         @elseif ($u->status_payment == 'Lunas')
-                                                            <button onclick="printExcelByIdLainya()" class="btn btn-success"
-                                                                target="_blank">Excel</button>
+                                                            <button onclick="printExcelByIdLainya()"
+                                                                class="btn btn-success" target="_blank">Excel</button>
+                                                                <a href="/lainyaPdf/{{$u->id}}" 
+                                                                    class="btn btn-danger">PDF</a>
                                                         @else
                                                             <a href="/pembayaran/payment/{{ $u->id }}"
                                                                 class="btn btn-primary">Bayar</a>
+                                                                <a href="/lainyaPdf/{{$u->id}}" 
+                                                                    class="btn btn-danger">PDF</a>
                                                         @endif
 
                                                     </td>
@@ -278,7 +290,7 @@
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                url: "{{ url('cetakExcelById') }}/" ,
+                url: "{{ url('cetakExcelById') }}/",
                 data: {
                     tagihan_id: $("#getidtagihan").text(),
                 },
@@ -293,11 +305,12 @@
             });
             return false;
         }
+
         function printExcelByIdLainya() {
             $.ajax({
                 type: "GET",
                 dataType: 'json',
-                url: "{{ url('cetakExcelById') }}/" ,
+                url: "{{ url('cetakExcelById') }}/",
                 data: {
                     tagihan_id: $("#getIdLainya").text(),
                 },

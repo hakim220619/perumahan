@@ -14,6 +14,10 @@ class AuthController extends Controller
     {
         return view('backend.auth.login');
     }
+    public function resetPassword()
+    {
+        return view('backend.auth.resetPassword');
+    }
     public function login_action(Request $request)
     {
         $request->validate([

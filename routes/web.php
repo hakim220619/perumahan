@@ -32,6 +32,7 @@ Route::get('/', function () {
     return view('backend.auth.login');
 });
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('resetPassword', [AuthController::class, 'resetPassword'])->name('resetPassword');
 Route::post('login', [AuthController::class, 'login_action'])->name('login.action');
 
 

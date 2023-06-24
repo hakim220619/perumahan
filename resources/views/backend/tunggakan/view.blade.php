@@ -29,7 +29,7 @@
                         <div class="col-md-5">
                             <br>
                             <button onclick="printTunggakan()" class="btn btn-success">Excel</button>
-                            <a href="/pembayaran" type="button" class="btn btn-danger">refresh</a>
+                            <a href="/tunggakan" type="button" class="btn btn-danger">refresh</a>
                         </div>
 
                     </div>

@@ -39,16 +39,20 @@ class TunggakanController extends Controller
         // dd($request->)
         // $and = "";
 
-        $data = DB::select("SELECT u.nama_lengkap, jp.pembayaran, t.nilai, ta.tahun,
-        (
-            case when t.jenis_pembayaran = 1 
-            then (t.nilai * 12) - (SELECT IF(p.nilai != null, SUM(p.nilai), 0) as total_dibayar FROM payment p LEFT JOIN tagihan t on t.id=p.tagihan_id 
-            WHERE p.status = 'Lunas' AND t.jenis_pembayaran = 1 AND p.user_id = '$request->user_id') 
-            ELSE t.nilai END
-        ) AS tunggakan 
-            FROM tagihan t LEFT JOIN payment p on p.tagihan_id=t.id LEFT JOIN tahun_ajaran ta on ta.id=t.thajaran_id 
-            LEFT JOIN jenis_pembayaran jp on jp.id=t.jenis_pembayaran LEFT JOIN users u on u.id=t.user_id 
-            WHERE t.user_id = '$request->user_id' GROUP BY u.nama_lengkap, jp.pembayaran, ta.tahun, t.nilai, t.jenis_pembayaran, tunggakan");
+        $data = DB::select("SELECT z.*, z.tagihan - z.bayar AS tunggakan FROM (
+            SELECT t.user_id, u.nama_lengkap, ta.tahun, jp.pembayaran,
+            CASE
+                WHEN t.jenis_pembayaran = 1 THEN t.nilai * 12
+                ELSE t.nilai
+                END AS tagihan, SUM(IFNULL(p.nilai, 0)) AS bayar
+            FROM tagihan t
+            LEFT JOIN payment p on p.tagihan_id=t.id
+            LEFT JOIN tahun_ajaran ta on ta.id=t.thajaran_id
+            LEFT JOIN jenis_pembayaran jp on jp.id=t.jenis_pembayaran
+            INNER JOIN users u on u.id = t.user_id
+            GROUP BY t.user_id, jp.pembayaran, ta.tahun, t.jenis_pembayaran, t.nilai
+            ) z
+            WHERE z.user_id = '$request->user_id' ORDER BY tunggakan DESC");
         // dd($data);
         echo json_encode($data);
     }
